@@ -1,6 +1,6 @@
-package com.javasampleapproach.security.model;
+package by.bcrypt.security.model;
 
-import com.javasampleapproach.security.controller.WebController;
+import by.bcrypt.security.controller.WebController;
 
 import java.util.Properties;
 

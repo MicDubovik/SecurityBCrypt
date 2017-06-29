@@ -1,4 +1,4 @@
-package com.javasampleapproach.security.config;
+package by.bcrypt.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

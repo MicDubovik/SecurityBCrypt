@@ -1,13 +1,12 @@
-package com.javasampleapproach.security.controller;
+package by.bcrypt.security.controller;
 
-import com.javasampleapproach.security.model.Role;
-import com.javasampleapproach.security.model.User;
-import com.javasampleapproach.security.model.UserRoles;
-import com.javasampleapproach.security.repository.RoleRepo;
-import com.javasampleapproach.security.repository.UserRepo;
-import com.javasampleapproach.security.repository.UserRoleRepo;
+import by.bcrypt.security.model.Role;
+import by.bcrypt.security.model.User;
+import by.bcrypt.security.model.UserRoles;
+import by.bcrypt.security.repository.RoleRepo;
+import by.bcrypt.security.repository.UserRepo;
+import by.bcrypt.security.repository.UserRoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.validation.Valid;
-import java.io.*;
 import java.util.Properties;
 
 @Controller
@@ -85,7 +80,11 @@ public class WebController {
     }
 
     @RequestMapping(value = {"/register"})
-    public String register() {
+    public String register(Model model) {
+        String postfix = getPostfix();
+
+        model.addAttribute("postfix",postfix);
+
         return "register";
     }
 
@@ -96,9 +95,13 @@ public class WebController {
             return "register";
         }
 
-        String password = new BCryptPasswordEncoder().encode(user.getPasswd_hash());
+        String hashPass = user.getPasswd_hash();
 
-        User newUser = new User(user.getUsername(), password);
+        String pass = user.getPasswd_hash().substring(0,getPostfix().length());
+
+        User showUser = new User(user.getUsername(),user.getPasswd_hash().substring(0,getPostfix().length()));
+
+        User newUser = new User(user.getUsername(),new BCryptPasswordEncoder().encode(user.getPasswd_hash()));
 
         userRepo.saveAndFlush(newUser);
 //
@@ -109,32 +112,10 @@ public class WebController {
         userRoleRepo.saveAndFlush(new UserRoles(newUser, role));
 
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", showUser);
 
         return "hello";
     }
 
-//    public static void main(String[] args) throws IOException {
-//
-//        Properties property = new Properties();
-//        try {
-//            ClassLoader myCL = WebController.class.getClassLoader();
-//            property.load(
-//                    myCL.getResourceAsStream(
-//                            "auth.properties"));
-//            String post = property.getProperty("pass.postfix");
-//        } catch (Exception x) {
-//            x.printStackTrace();
-//        }
-//
-//
-//        String hashed = BCrypt.hashpw("111111", BCrypt.gensalt());
-//
-//
-//// previously been hashed
-//        if (BCrypt.checkpw("111111", hashed))
-//            System.out.println("It matches");
-//        else
-//            System.out.println("It does not match");
-//    }
+
 }

@@ -1,11 +1,10 @@
-package com.javasampleapproach.security.model;
+package by.bcrypt.security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,8 +22,7 @@ public class User implements Serializable{
 
     private boolean enabled;
 
-    @Transient
-    private Salt salt = new Salt();
+
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     private List<UserRoles> roleSet = new ArrayList<>();
@@ -59,19 +57,27 @@ public class User implements Serializable{
         this.user_id = user_id;
     }
 
-    public String getPasswd_hash() {
-        return passwd_hash+salt.getPostfix();
-    }
-
-    public void setPasswd_hash(String passwd_hash) {
-        this.passwd_hash = passwd_hash+salt.getPostfix();
-    }
-
     public List<UserRoles> getRoleSet() {
         return roleSet;
     }
 
     public void setRoleSet(List<UserRoles> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    public String getPasswd_hash() {
+        return passwd_hash;
+    }
+
+    public void setPasswd_hash(String passwd_hash) {
+        this.passwd_hash = passwd_hash;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

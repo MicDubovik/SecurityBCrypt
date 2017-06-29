@@ -1,19 +1,16 @@
-package com.javasampleapproach.security.repository;
+package by.bcrypt.security.repository;
 
-import com.javasampleapproach.security.controller.WebController;
-import com.javasampleapproach.security.model.Role;
-import com.javasampleapproach.security.model.User;
-import com.javasampleapproach.security.model.UserRoles;
+import by.bcrypt.security.model.Role;
+import by.bcrypt.security.model.User;
+import by.bcrypt.security.model.UserRoles;
+import by.bcrypt.security.controller.WebController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
 @Component
 public class FillTable implements CommandLineRunner {
@@ -50,15 +47,8 @@ public class FillTable implements CommandLineRunner {
         Role role = new Role("ROLE_ADMIN","ROLE_ADMIN");
         Role role2 = new Role("ROLE_USER","ROLE_USER");
         User user1 = new User("michyy",new BCryptPasswordEncoder().encode("111111"+getPostfix()));
-        User user2 = new User("vano",new BCryptPasswordEncoder().encode("222222"));
+        User user2 = new User("vano",new BCryptPasswordEncoder().encode("222222"+getPostfix()));
 
-
-        Set<Role> roles1 = new HashSet<>();
-        Set<Role> roles2 = new HashSet<>();
-
-        roles1.add(role);
-        roles1.add(role2);
-        roles2.add(role2);
 
 
         List<User> users = repo.findAll();

@@ -13,18 +13,20 @@
          <h1 style="color:blue" >Logged out.</h1>
      </div>
      <form th:action="@{/login}" method="post">
-         <div><input hidden="hidden" id="postfix" type="text" th:text="postfix"/> </div>
+         <div><input hidden="hidden" id="postfix" type="text" th:value="${postfix}"/> </div>
          <div><label> User Name : <input id="name" type="text" name="username"/> </label></div>
-         <div><label> Password: <input id="pass" type="password" name="password" onchange="generateFullName()"/> </label></div>
+         <div><label> Password: <input id="pass" type="password" name="password" onchange="generateFullPass()"/> </label></div>
 
-
-         <div><input type="submit" value="Sign In" onclick="generateFullName()"/>    </div>
+         <div><input type="button" value="Get value"/>    </div>
+         <div><input type="submit" value="Sign In" />    </div>
          <script type="text/javascript">
-             function generateFullName()
+             function generateFullPass()
              {
-                 console.log(document.getElementById('posfix').value);
-                 document.getElementById('pass').innerText =
-                     document.getElementById('pass').value + document.getElementById('posfix').value;
+
+                 console.log(document.getElementById("postfix").value);
+                 document.getElementById("pass").value =
+                     document.getElementById("pass").value + document.getElementById("postfix").value;
+                 console.log(document.getElementById("pass").value);
              }
 
          </script>

@@ -1,8 +1,7 @@
-package com.javasampleapproach.security;
+package by.bcrypt.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 public class SpringSecurityAuthenticationApplication {

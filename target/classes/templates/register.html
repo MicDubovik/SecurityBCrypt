@@ -13,9 +13,21 @@
     <h1 style="color:blue" >Logged out.</h1>
 </div>
 <form th:action="@{/adduser}" method="post">
+    <div><input hidden="hidden" id="postfix" type="text" th:value="${postfix}"/> </div>
     <div><label> Enter userName : <input type="text" placeholder="name" name="username" /> </label></div>
-    <div><label> Enter password: <input type="password" placeholder="password" name="passwd_hash"/> </label></div>
-    <div><input type="submit" value="Add user "/>    </div>
+    <div><label> Enter password: <input id="pass" type="password" placeholder="password" name="passwd_hash" onchange="generateFullPass()"/> </label></div>
+    <div><input type="submit" value="Add user "/></div>
+    <script type="text/javascript">
+        function generateFullPass()
+        {
+
+            console.log(document.getElementById("postfix").value);
+            document.getElementById("pass").value =
+                document.getElementById("pass").value + document.getElementById("postfix").value;
+            console.log(document.getElementById("pass").value);
+        }
+
+    </script>
 </form>
 
 

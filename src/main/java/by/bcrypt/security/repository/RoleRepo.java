@@ -1,6 +1,6 @@
-package com.javasampleapproach.security.repository;
+package by.bcrypt.security.repository;
 
-import com.javasampleapproach.security.model.Role;
+import by.bcrypt.security.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

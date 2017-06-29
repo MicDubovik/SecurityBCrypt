@@ -9,7 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-06-29.12:00:18.015</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2017-06-29.13:13:55.393</IntrospectionTimestamp>
+      <IntrospectionStateNumber>6633</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -28,5 +29,152 @@
     <schema id="8" parent="2" name="information_schema">
       <ObjectId>11585</ObjectId>
     </schema>
+    <sequence id="9" parent="3" name="roles_user_role_id_seq">
+      <ObjectId>64630</ObjectId>
+      <StateNumber>6628</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="10" parent="3" name="t_users_roles_id_seq">
+      <ObjectId>64641</ObjectId>
+      <StateNumber>6629</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="11" parent="3" name="users_user_id_seq">
+      <ObjectId>64649</ObjectId>
+      <StateNumber>6630</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <table id="12" parent="3" name="roles">
+      <ObjectId>64632</ObjectId>
+      <StateNumber>6632</StateNumber>
+    </table>
+    <table id="13" parent="3" name="t_users_roles">
+      <ObjectId>64643</ObjectId>
+      <StateNumber>6633</StateNumber>
+    </table>
+    <table id="14" parent="3" name="users">
+      <ObjectId>64651</ObjectId>
+      <StateNumber>6633</StateNumber>
+    </table>
+    <column id="15" parent="12" name="user_role_id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>6628</StateNumber>
+      <SequenceName>roles_user_role_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;roles_user_role_id_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="16" parent="12" name="alias">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>6628</StateNumber>
+    </column>
+    <column id="17" parent="12" name="frendly_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>6628</StateNumber>
+    </column>
+    <index id="18" parent="12" name="roles_pkey">
+      <ObjectId>64639</ObjectId>
+      <ColNames>user_role_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="19" parent="12" name="roles_pkey">
+      <ObjectId>64640</ObjectId>
+      <ColNames>user_role_id</ColNames>
+      <UnderlyingIndexName>roles_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="20" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>6629</StateNumber>
+      <SequenceName>t_users_roles_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;t_users_roles_id_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="21" parent="13" name="role_id">
+      <Position>2</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>6629</StateNumber>
+    </column>
+    <column id="22" parent="13" name="user_id">
+      <Position>3</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>6629</StateNumber>
+    </column>
+    <index id="23" parent="13" name="t_users_roles_pkey">
+      <ObjectId>64647</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="24" parent="13" name="t_users_roles_pkey">
+      <ObjectId>64648</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>t_users_roles_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="25" parent="13" name="fk3jd48ha58rtkwry9isawbp323">
+      <ObjectId>64662</ObjectId>
+      <ColNames>role_id</ColNames>
+      <RefTableName>roles</RefTableName>
+      <RefKeyName>roles_pkey</RefKeyName>
+      <RefColNames>user_role_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="26" parent="13" name="fkg1781eiepv0lcwm9qu2ymmep3">
+      <ObjectId>64667</ObjectId>
+      <ColNames>user_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="27" parent="14" name="user_id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>6630</StateNumber>
+      <SequenceName>users_user_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;users_user_id_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="28" parent="14" name="enabled">
+      <Position>2</Position>
+      <DataType>boolean|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>6630</StateNumber>
+    </column>
+    <column id="29" parent="14" name="passwd_hash">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>6630</StateNumber>
+    </column>
+    <column id="30" parent="14" name="username">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>6630</StateNumber>
+    </column>
+    <index id="31" parent="14" name="users_pkey">
+      <ObjectId>64658</ObjectId>
+      <ColNames>user_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="32" parent="14" name="uk_r43af9ap4edm43mmtq01oddj6">
+      <ObjectId>64660</ObjectId>
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="33" parent="14" name="users_pkey">
+      <ObjectId>64659</ObjectId>
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="34" parent="14" name="uk_r43af9ap4edm43mmtq01oddj6">
+      <ObjectId>64661</ObjectId>
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>uk_r43af9ap4edm43mmtq01oddj6</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>
