@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+ <head>
+ <title>>Welcome Security with Spring Boot!</title>
+
+ </head>
+ <body>
+     <div th:if="${param.error}">
+        <h1 style="color:red">Username or Password is wrong. Please check again</h1>
+ 
+     </div>
+     <div th:if="${param.logout}" >
+         <h1 style="color:blue" >Logged out.</h1>
+     </div>
+     <form th:action="@{/login}" method="post">
+         <div><input hidden="hidden" id="postfix" type="text" th:text="postfix"/> </div>
+         <div><label> User Name : <input id="name" type="text" name="username"/> </label></div>
+         <div><label> Password: <input id="pass" type="password" name="password" onchange="generateFullName()"/> </label></div>
+
+
+         <div><input type="submit" value="Sign In" onclick="generateFullName()"/>    </div>
+         <script type="text/javascript">
+             function generateFullName()
+             {
+                 console.log(document.getElementById('posfix').value);
+                 document.getElementById('pass').innerText =
+                     document.getElementById('pass').value + document.getElementById('posfix').value;
+             }
+
+         </script>
+     </form>
+ <div>
+     <a href="/register" >register</a>
+ </div>
+
+ </body>
+</html>
